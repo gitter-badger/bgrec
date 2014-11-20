@@ -1,7 +1,6 @@
 package com.davidcastella.bgrec.scraper;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,12 +26,12 @@ public class BoardGameRetrieverTest {
 
     @Test
     public void testRetrieveSlashEndedUri() throws Exception {
-        Assert.assertEquals(bgr.retrieve(), BoardGameFixture.getSettlersOfCatan());
+        assertEquals(bgr.retrieve(), BoardGameFixture.getSettlersOfCatan());
     }
 
     @Test
     public void testRetrieveNonSlashEndedUri() throws Exception {
         bgr.setBaseUri(new URL("http://boardgamegeek.com/xmlapi/boardgame"));
-        Assert.assertEquals(bgr.retrieve(), BoardGameFixture.getSettlersOfCatan());
+        assertEquals(bgr.retrieve(), BoardGameFixture.getSettlersOfCatan());
     }
 }
