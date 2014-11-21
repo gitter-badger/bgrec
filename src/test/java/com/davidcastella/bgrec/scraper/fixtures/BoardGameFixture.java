@@ -91,8 +91,8 @@ public class BoardGameFixture {
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<boardgamepublisher objectid=\"4358\">Capcom</boardgamepublisher>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<boardgameexpansion objectid=\"104774\">Catakatoa</boardgameexpansion>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<boardgameversion objectid=\"65814\">Catalan first edition</boardgameversion>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<boardgamefamily objectid=\"3\">Catan</boardgamefamily>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<videogamebg objectid=\"69075\">Catan</videogamebg>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<boardgamefamily objectid=\"3\">Catan</boardgamefamily>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<boardgamecompilation objectid=\"17419\">CATAN 3D Collector&#039;s Edition</boardgamecompilation>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<boardgameimplementation objectid=\"17419\">CATAN 3D Collector&#039;s Edition</boardgameimplementation>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<boardgameexpansion objectid=\"26352\">Catan Austria / Wien meets Catan</boardgameexpansion>\n" +
