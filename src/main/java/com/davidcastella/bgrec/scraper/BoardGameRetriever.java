@@ -1,11 +1,18 @@
 package com.davidcastella.bgrec.scraper;
 
+import com.davidcastella.bgrec.scraper.exceptions.NonExistentPropertyException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import org.joox.Match;
+import static org.joox.JOOX.*;
+import org.w3c.dom.Document;
 
 import javax.ws.rs.core.MediaType;
+import javax.xml.ws.http.HTTPException;
+import java.net.HttpRetryException;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by davidkaste on 19/11/14.
@@ -13,26 +20,12 @@ import java.net.URL;
 public class BoardGameRetriever {
     private URL baseUri;
     private String gameUri;
-    private String format;
+    private Document document;
 
-    BoardGameRetriever (URL baseUri, String gameUri, String format) {
-        this.baseUri = baseUri;
-        this.gameUri = gameUri;
-        this.format = format;
-    }
-
-    BoardGameRetriever () {
-        setBaseUri(null);
-        setFormat(null);
-        setGameUri(null);
-    }
-
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String format) {
-        this.format = format;
+    BoardGameRetriever (URL baseUri, String gameUri) {
+        setBaseUri(baseUri);
+        setGameUri(gameUri);
+        document = retrieve();
     }
 
     public String getGameUri() {
@@ -51,25 +44,28 @@ public class BoardGameRetriever {
         this.baseUri = baseUri;
     }
 
-    public String retrieve () {
+    public List<Match> query(String value) throws NonExistentPropertyException {
+        Match x = $(document).find(value);
+        if (x.each().isEmpty()) {
+            throw new NonExistentPropertyException("The property " + value + " does not exist.");
+        }
+        return x.each();
+    }
+
+    private Document retrieve () throws HTTPException {
         WebResource resource;
         Client client = Client.create();
-        ClientResponse response = null;
+        ClientResponse response;
 
-        try {
-            resource = client.resource(checkBaseUri(getBaseUri().toString()) + getGameUri());
-            response = resource.accept(MediaType.APPLICATION_XML_TYPE)
-                    .get(ClientResponse.class);
+        resource = client.resource(checkBaseUri(getBaseUri().toString()) + getGameUri());
+        response = resource.accept(MediaType.APPLICATION_XML_TYPE)
+                .get(ClientResponse.class);
 
-            if (response.getStatus() != 200) {
-                throw new RuntimeException("ERROR");
-            }
-
-        } catch (Exception e) {
-            //TODO
+        if (response.getStatus() != 200) {
+            throw new HTTPException(response.getStatus());
         }
 
-        return response.getEntity(String.class);
+        return response.getEntity(Document.class);
     }
 
     private String checkBaseUri (String uri) {
