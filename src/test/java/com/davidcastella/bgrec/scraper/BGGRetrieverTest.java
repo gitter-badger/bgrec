@@ -10,12 +10,12 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class BoardGameRetrieverTest {
-    BoardGameRetriever bgr;
+public class BGGRetrieverTest {
+    BGGRetriever bgr;
 
     @Before
     public void setUp() throws Exception {
-        bgr = new BoardGameRetriever(new URL("http://boardgamegeek.com/xmlapi/boardgame"), "3076");
+        bgr = new BGGRetriever(new URL("http://boardgamegeek.com/xmlapi/boardgame"), "3076");
     }
 
     @Test

@@ -17,12 +17,12 @@ import java.util.List;
 /**
  * Created by davidkaste on 19/11/14.
  */
-public class BoardGameRetriever {
+public class BGGRetriever {
     private URL baseUri;
     private String gameUri;
     private Document document;
 
-    BoardGameRetriever (URL baseUri, String gameUri) {
+    BGGRetriever(URL baseUri, String gameUri) {
         setBaseUri(baseUri);
         setGameUri(gameUri);
         document = retrieve();
